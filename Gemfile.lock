@@ -109,6 +109,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -226,6 +228,7 @@ DEPENDENCIES
   jquery-rails
   pg
   pry
+  pundit
   rack_session_access
   rails (= 4.2)
   rails_12factor
@@ -240,4 +243,4 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
 
 BUNDLED WITH
-   1.14.4
+   1.14.6
