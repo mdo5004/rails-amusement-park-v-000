@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-    
+
     has_many :rides
     has_many :attractions, :through => :rides
 
@@ -8,8 +8,13 @@ class User < ActiveRecord::Base
 
     validates :name, uniqueness: true
     validates :name, presence: true
-    
+
     def mood
-        return nausea > happiness ? "sad" : "happy"
+        if nausea && happiness
+            m = nausea > happiness ? "sad" : "happy"
+        else
+            m = "unknown"
+        end
+        return m
     end
 end

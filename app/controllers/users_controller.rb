@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    before_action :authenticate_user!
     def new
         @user = User.new
     end
@@ -30,5 +31,9 @@ class UsersController < ApplicationController
     private
     def user_params
         params.require(:user).permit(:name, :password, :height, :tickets, :nausea, :happiness)
+    end
+    
+    def authenticate_user!
+        !!session[:user_id] 
     end
 end
