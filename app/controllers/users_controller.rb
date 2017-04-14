@@ -1,5 +1,7 @@
+require "pry"
 class UsersController < ApplicationController
-    before_action :authenticate_user!
+
+    before_action :authenticate_user!, only: [:index, :show, :edit, :update, :destroy]
     def new
         @user = User.new
     end
@@ -16,16 +18,24 @@ class UsersController < ApplicationController
     
     def index
         @users = User.all
+        authorize @users
     end
     def show
         @user = User.find(params[:id])
+        authorize @user
+        binding.pry
     end
     def edit
         @user = User.find(params[:id])     
+        authorize @user
     end
     def update
+        @user = User.find(params[:id])
+        authorize @user
     end
     def destroy
+        @user = User.find(params[:id])     
+        authorize @user
     end
     
     private
@@ -34,6 +44,6 @@ class UsersController < ApplicationController
     end
     
     def authenticate_user!
-        !!session[:user_id] 
+        session[:user_id] 
     end
 end
