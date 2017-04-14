@@ -1,3 +1,4 @@
+require 'pry'
 class SessionsController < ApplicationController
     def new
         @user = User.new
@@ -6,18 +7,20 @@ class SessionsController < ApplicationController
         @user = User.find_by(name: session_params[:name])
         if @user && @user.authenticate(session_params[:password])
             session[:user_id] = @user.id
-            redirect_to root_path
+            redirect_to user_path(@user)
         else
-            render :new, :alert => "Failed login attempt."
+#            render :new, :alert => "Failed login attempt."
+            redirect_to new_user_path
         end
     end
 
     def destroy
         session[:user_id] = nil
+        redirect_to root_path
     end
 
     private
     def session_params
-        params.permit(:name, :password)
+        params.require(:user).permit(:name, :password)
     end
 end

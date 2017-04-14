@@ -24,7 +24,7 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
           <%= render 'layouts/navigation' %>
-          <%= render 'layouts/messages' %>
+          
            <!--  nav here -->
           </ul>
         </div><!--/.nav-collapse -->
@@ -33,6 +33,7 @@
 
     <!-- content -->
     <div class="container"  role="main">
+     <%= render 'layouts/messages' %>
       <%= yield %>
     </div>
 
