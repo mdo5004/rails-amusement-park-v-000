@@ -1,3 +1,7 @@
 <h1><%= @attraction.name %></h1>
 <h3>Details:</h3>
-<%= render partial:"attraction", locals: {attraction:@attraction} %>
+<%= render partial:"attraction", locals: {attraction:@attraction, index:false} %>
+<%= form_for @attraction, method:"patch" do |f| %>
+<%= f.hidden_field(:users, value: current_user.id) %>
+<%= f.submit "Go on this ride" %>
+<% end %>
